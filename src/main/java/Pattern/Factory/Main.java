@@ -12,7 +12,6 @@ public class Main {
         String request = "Peugeot";
         ICarFactory factory;
 
-
         switch (request) {
             case "Volkswagen" -> factory = new VWCarFactory();
             case "Nissan" -> factory = new NissanCarFactory();
