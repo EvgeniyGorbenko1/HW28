@@ -6,33 +6,34 @@ public class Car {
     private int power;
     private int maxSpeed;
 
-    public static class Builder{
+    public static class Builder {
         private Car car;
 
-        public Builder(){
+        public Builder() {
             car = new Car();
         }
 
-        public Builder setBrand(String brand){
+        public Builder setBrand(String brand) {
             car.brand = brand;
             return this;
         }
 
-        public Builder setYear(int year){
+        public Builder setYear(int year) {
             car.year = year;
             return this;
         }
 
-        public Builder setPower(int power){
+        public Builder setPower(int power) {
             car.power = power;
             return this;
         }
 
-        public Builder setMaxSpeed(int maxSpeed){
+        public Builder setMaxSpeed(int maxSpeed) {
             car.maxSpeed = maxSpeed;
             return this;
         }
-        public Car build(){
+
+        public Car build() {
             return car;
         }
     }
