@@ -1,14 +1,12 @@
-package Singleton;
-
-import org.w3c.dom.ls.LSOutput;
+package Pattern.Singleton;
 
 public class Singleton {
     private static Singleton instance;
     private String data;
 
     private Singleton() {
-        data = "Singleton data";
-        System.out.println("Singleton data created");
+        data = "Pattern.Singleton data";
+        System.out.println("Pattern.Singleton data created");
     }
     public static Singleton getInstance() {
         if (instance == null) {
