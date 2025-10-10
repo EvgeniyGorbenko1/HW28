@@ -1,0 +1,3 @@
+db_login=user
+db_password=user
+db_url=jdbc:postgresql://localhost:5432/postgres
