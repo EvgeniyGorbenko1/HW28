@@ -13,9 +13,10 @@ import java.util.List;
 public class UserRepository {
     private static final String INSERT_USER = "INSERT INTO users(id, username, password, first_name, last_name, created_at, updated_at) VALUES (DEFAULT,?,?,?,?,?,?)";
     private static final String UPDATE_USER = "UPDATE users SET username = ?, password = ?, first_name = ?, last_name = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ? ";
+
     public void addUser(User user) {
-        try(Connection connection = DataBaseConnection.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER)) {
+        try (Connection connection = DataBaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER)) {
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getFirst_name());
@@ -24,7 +25,7 @@ public class UserRepository {
             preparedStatement.setTimestamp(6, new Timestamp(System.currentTimeMillis()));
 
             preparedStatement.executeUpdate();
-        }catch (SQLException | ClassNotFoundException | IOException exception){
+        } catch (SQLException | ClassNotFoundException | IOException exception) {
             throw new RuntimeException(exception);
         }
     }
@@ -47,27 +48,26 @@ public class UserRepository {
         } catch (SQLException | ClassNotFoundException | IOException e) {
             throw new RuntimeException(e);
         }
-
         return users;
     }
 
-    public void updateUser( String newUsername, String newPassword, String newFirstName, String newLastName, int id) {
-       try(Connection connection = DataBaseConnection.getConnection();
-           PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER)){
-           preparedStatement.setString(1, newUsername);
-           preparedStatement.setString(2, newPassword);
-           preparedStatement.setString(3, newFirstName);
-           preparedStatement.setString(4, newLastName);
-           preparedStatement.setInt(5, id);
-           preparedStatement.executeUpdate();
-       } catch (SQLException | ClassNotFoundException | IOException e) {
-           throw new RuntimeException(e);
-       }
+    public void updateUser(String newUsername, String newPassword, String newFirstName, String newLastName, int id) {
+        try (Connection connection = DataBaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER)) {
+            preparedStatement.setString(1, newUsername);
+            preparedStatement.setString(2, newPassword);
+            preparedStatement.setString(3, newFirstName);
+            preparedStatement.setString(4, newLastName);
+            preparedStatement.setInt(5, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException | ClassNotFoundException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void deleteUser(int id) {
         try (Connection connection = DataBaseConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM users WHERE id = ?")){
+             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM users WHERE id = ?")) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException | ClassNotFoundException | IOException e) {
