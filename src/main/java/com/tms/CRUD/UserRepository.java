@@ -17,10 +17,10 @@ public class UserRepository {
     public void addUser(User user) {
         try (Connection connection = DataBaseConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER)) {
-            preparedStatement.setString(1, user.getUsername());
-            preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setString(3, user.getFirst_name());
-            preparedStatement.setString(4, user.getLast_name());
+            preparedStatement.setString(1, user.getUserName());
+            preparedStatement.setString(2, user.getPassWord());
+            preparedStatement.setString(3, user.getFirstName());
+            preparedStatement.setString(4, user.getLastName());
             preparedStatement.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
             preparedStatement.setTimestamp(6, new Timestamp(System.currentTimeMillis()));
 
@@ -37,13 +37,13 @@ public class UserRepository {
              ResultSet rs = stmt.executeQuery("SELECT id, username, password, first_name, last_name, created_at, updated_at FROM users")) {
             while (rs.next()) {
                 int id = rs.getInt(1);
-                String username = rs.getString(2);
-                String password = rs.getString(3);
-                String first_name = rs.getString(4);
-                String last_name = rs.getString(5);
-                String created_at = String.valueOf(rs.getTimestamp(6));
-                String updated_at = String.valueOf(rs.getTimestamp(7));
-                users.add(new User(id, username, password, first_name, last_name, created_at, updated_at));
+                String userName = rs.getString(2);
+                String passWord = rs.getString(3);
+                String firstName = rs.getString(4);
+                String lastName = rs.getString(5);
+                LocalDate createdAt = LocalDate.from(rs.getTimestamp(6).toLocalDateTime());
+                LocalDate updatedAt = LocalDate.from(rs.getTimestamp(7).toLocalDateTime());
+                users.add(new User(id, userName, passWord, firstName,lastName,createdAt,updatedAt));
             }
         } catch (SQLException | ClassNotFoundException | IOException e) {
             throw new RuntimeException(e);
@@ -51,11 +51,11 @@ public class UserRepository {
         return users;
     }
 
-    public void updateUser(String newUsername, String newPassword, String newFirstName, String newLastName, int id) {
+    public void updateUser(String newUserName, String newPassWord, String newFirstName, String newLastName, int id) {
         try (Connection connection = DataBaseConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER)) {
-            preparedStatement.setString(1, newUsername);
-            preparedStatement.setString(2, newPassword);
+            preparedStatement.setString(1, newUserName);
+            preparedStatement.setString(2, newPassWord);
             preparedStatement.setString(3, newFirstName);
             preparedStatement.setString(4, newLastName);
             preparedStatement.setInt(5, id);

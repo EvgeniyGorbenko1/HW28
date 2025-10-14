@@ -4,25 +4,21 @@ import java.time.LocalDate;
 
 public class User {
     private int id;
-    private String username;
-    private String password;
-    private String first_name;
-    private String last_name;
-    private LocalDate created_at;
-    private LocalDate updated_at;
+    private String userName;
+    private String passWord;
+    private String firstName;
+    private String lastName;
+    private LocalDate createdAt;
+    private LocalDate updatedAt;
 
-
-    public User(int id, String username, String password, String first_name, String last_name, LocalDate created_at, LocalDate updated_at) {
+    public User(int id, String userName, String passWord, String firstName, String lastName, LocalDate createdAt, LocalDate updatedAt) {
         this.id = id;
-        this.username = username;
-        this.password = password;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-    }
-
-    public User(int id, String username, String password, String firstName, String lastName, String createdAt, String updatedAt) {
+        this.userName = userName;
+        this.passWord = passWord;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public int getId() {
@@ -33,64 +29,66 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPassWord() {
+        return passWord;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public LocalDate getCreated_at() {
-        return created_at;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setCreated_at(LocalDate created_at) {
-        this.created_at = created_at;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public LocalDate getUpdated_at() {
-        return updated_at;
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(LocalDate updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
-                ", created_at=" + created_at +
-                ", updated_at=" + updated_at +
+                ", userName='" + userName + '\'' +
+                ", passWord='" + passWord + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }
+
+
