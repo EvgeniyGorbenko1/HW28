@@ -1,7 +1,6 @@
-package com.tms.CRUD;
+package com.springcrud.repository;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;

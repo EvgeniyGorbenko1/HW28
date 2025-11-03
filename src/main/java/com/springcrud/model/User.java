@@ -1,7 +1,10 @@
-package com.tms.CRUD;
+package com.springcrud.model;
+
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
+@Component
 public class User {
     private int id;
     private String userName;
@@ -10,6 +13,8 @@ public class User {
     private String lastName;
     private LocalDate createdAt;
     private LocalDate updatedAt;
+
+    public User() {}
 
     public User(int id, String userName, String passWord, String firstName, String lastName, LocalDate createdAt, LocalDate updatedAt) {
         this.id = id;
