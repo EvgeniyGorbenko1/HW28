@@ -25,24 +25,30 @@ public class UserController {
         return modelAndView;
 }
     @PostMapping("/delete/{id}")
-    public String deleteUserById (@PathVariable("id")int id, Model model){
+    public String deleteUserById (@PathVariable("id")int id){
         userService.deleteUser(id);
         return "redirect:/users";
 
     }
 
     @PostMapping("/update/{id}")
-    public String updateUserById (@PathVariable("id")int id, @RequestParam String newUserName,
-                                  @RequestParam String newPassWord,  @RequestParam String newFirstName, @RequestParam String newLastName){
-        userService.updateUser(newUserName, newPassWord, newFirstName, newLastName, id);
+    public String updateUserById (@PathVariable("id")int id, @RequestParam("userName") String userName,
+                                  @RequestParam("password") String password,
+                                  @RequestParam("firstName") String firstName,
+                                  @RequestParam("lastName") String lastName){
+        userService.updateUser(userName, password, firstName, lastName, id);
         return "redirect:/users";
     }
 
     @GetMapping("/edit/{id}")
-    public String editUserById (@PathVariable("id")int id, ModelAndView modelAndView){
+    public String editUserById (@PathVariable("id")int id, Model model){
         User user = userService.findById(id);
-        modelAndView.setViewName("edit");
-        modelAndView.addObject("user", user);
+
+        if (user == null) {
+            // Перенаправляем на страницу ошибки или список пользователей
+            return "redirect:/users?error=User not found";
+        }
+        model.addAttribute("user", user);
         return "edit-user";
     }
 }

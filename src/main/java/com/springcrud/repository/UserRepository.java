@@ -19,23 +19,24 @@ public class UserRepository {
     private static final String GET_USER = "SELECT * FROM users WHERE id = ?";
 
     public User findById(int id) {
-        User user = new User();
+        User user = null;
         try (Connection connection = com.springcrud.repository.DataBaseConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(GET_USER)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 String userName = rs.getString(2);
                 String passWord = rs.getString(3);
                 String firstName = rs.getString(4);
                 String lastName = rs.getString(5);
                 LocalDate createdAt = LocalDate.from(rs.getTimestamp(6).toLocalDateTime());
                 LocalDate updatedAt = LocalDate.from(rs.getTimestamp(7).toLocalDateTime());
-                users.add(new User(id, userName, passWord, firstName, lastName, createdAt, updatedAt));
+                user = new User(id, userName, passWord, firstName, lastName, createdAt, updatedAt);
             }
         } catch (SQLException | ClassNotFoundException | IOException e) {
             throw new RuntimeException(e);
         }
+        return user;
     }
 
 

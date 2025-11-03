@@ -19,7 +19,8 @@ public class UserService {
         return userRepository.getAllUsers();
     }
 
-    public void updateUser(String newUserName, String newPassWord, String newFirstName, String newLastName, int id) {
+    public void updateUser(String newUserName, String newPassWord,
+                           String newFirstName, String newLastName, int id) {
         userRepository.updateUser(newUserName, newPassWord, newFirstName, newLastName, id);
     }
 
